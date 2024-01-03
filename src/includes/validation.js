@@ -50,7 +50,6 @@ export default {
           passwords_mismatch: "The passwords don't match.",
           tos: 'You must accept the Terms of Service.',
         }
-        console.log(ctx)
 
         const message = messages[ctx.rule.name]
           ? messages[ctx.rule.name]
@@ -58,6 +57,10 @@ export default {
 
         return message
       },
+      validateOnBlur: true,
+      validateOnChange: true,
+      validateOnInput: false,
+      validateOnModelUpdate: true,
     })
   },
 }
