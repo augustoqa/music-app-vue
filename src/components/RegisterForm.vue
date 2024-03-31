@@ -106,7 +106,8 @@
 </template>
 
 <script>
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '@/includes/firebase'
 
 export default {
   name: 'RegisterForm',
@@ -140,7 +141,7 @@ export default {
       let userCred = null
       try {
         userCred = await createUserWithEmailAndPassword(
-          getAuth(),
+          auth,
           values.email,
           values.password
         )
