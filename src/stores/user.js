@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { addDoc, doc, setDoc } from 'firebase/firestore'
 import { auth, usersCollection } from '@/includes/firebase'
 import { defineStore } from 'pinia'
@@ -22,7 +22,7 @@ export default defineStore('user', {
         country: values.country,
       })
 
-      await userCred.user.updateProfile({
+      await updateProfile(userCred.user, {
         displayName: values.name,
       })
 
