@@ -4,9 +4,9 @@ import About from '@/views/About.vue'
 import Manage from '@/views/Manage.vue'
 
 const routes = [
-  { path: '/', component: Home },
-  { path: '/about', component: About },
-  { path: '/manage', component: Manage },
+  { name: 'home', path: '/', component: Home },
+  { name: 'about', path: '/about', component: About },
+  { name: 'manage', path: '/manage', component: Manage },
 ]
 
 const router = createRouter({
