@@ -10,6 +10,10 @@ const routes = [
     name: 'manage',
     path: '/manage-music',
     component: Manage,
+    beforeEnter: (to, from, next) => {
+      console.log('Manage Route Guard')
+      next()
+    },
   },
   { path: '/manage', redirect: { name: 'manage' } },
   { path: '/:catchAll(.*)*', redirect: { name: 'home' } },
@@ -23,7 +27,6 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   console.log('Global guard')
-  console.log(to, from)
 
   next()
 })
