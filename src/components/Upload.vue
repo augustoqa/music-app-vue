@@ -55,6 +55,9 @@
 </template>
 
 <script>
+import { ref, uploadBytes } from 'firebase/storage'
+import { storage } from '@/includes/firebase'
+
 export default {
   name: 'Upload',
   data() {
@@ -72,6 +75,12 @@ export default {
         if (file.type !== 'audio/mpeg') {
           return
         }
+
+        const songsRef = ref(storage, `songs/${file.name}`) // music-d1209.appspot.com/songs/example.mp3
+
+        uploadBytes(songsRef, file).then((snapshot) => {
+          console.log('Upladed file')
+        })
       })
       console.log(files)
     },
