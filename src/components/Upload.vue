@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { ref, uploadBytes } from 'firebase/storage'
+import { ref, uploadBytesResumable } from 'firebase/storage'
 import { storage } from '@/includes/firebase'
 
 export default {
@@ -62,19 +62,19 @@ export default {
 
         const songsRef = ref(storage, `songs/${file.name}`) // music-d1209.appspot.com/songs/example.mp3
 
-        const task = uploadBytes(songsRef, file).then((snapshot) => {
-          console.log('Upladed file')
-        })
+        const task = uploadBytesResumable(songsRef, file)
 
-        this.uploads.push({
-          task,
-          current_progress: 0,
-          name: file.name,
-        })
+        const uploadIndex =
+          this.uploads.push({
+            task,
+            current_progress: 0,
+            name: file.name,
+          }) - 1
 
         task.on('state_changed', (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          this.uploads[uploadIndex].current_progress = progress
         })
       })
       console.log(files)
