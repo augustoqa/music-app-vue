@@ -43,10 +43,11 @@
 <script>
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { storage, auth, songsCollection } from '@/includes/firebase'
-import { addDoc } from 'firebase/firestore'
+import { addDoc, getDoc } from 'firebase/firestore'
 
 export default {
   name: 'Upload',
+  props: ['addSong'],
   data() {
     return {
       is_dragover: false,
@@ -104,7 +105,10 @@ export default {
             }
 
             song.url = await getDownloadURL(task.snapshot.ref)
-            await addDoc(songsCollection, song)
+            const songRef = await addDoc(songsCollection, song)
+            const songSnapshot = await getDoc(songRef)
+
+            this.addSong(songSnapshot)
 
             this.uploads[uploadIndex].variant = 'bg-green-400'
             this.uploads[uploadIndex].icon = 'fas fa-check'
