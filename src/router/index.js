@@ -21,7 +21,7 @@ const routes = [
     },
   },
   { path: '/manage', redirect: { name: 'manage' } },
-  { name: '/song', path: '/song/:id', component: Song },
+  { name: 'song', path: '/song/:id', component: Song },
   { path: '/:catchAll(.*)*', redirect: { name: 'home' } },
 ]
 
