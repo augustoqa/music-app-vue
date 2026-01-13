@@ -29,7 +29,11 @@
         <i class="fa fa-comments float-right text-green-400 text-2xl"></i>
       </div>
       <div class="p-6">
-        <vee-form :validation-schema="schema" @submit="addComment">
+        <vee-form
+          :validation-schema="schema"
+          @submit="addComment"
+          v-if="userLoggedIn"
+        >
           <div
             class="text-white text-center font-bold p-4 mb-4"
             v-if="comment_show_alert"
@@ -140,9 +144,10 @@
 </template>
 
 <script>
-import { doc, getDoc } from 'firebase/firestore'
-import { db } from '../includes/firebase'
-import { ErrorMessage } from 'vee-validate'
+import { addDoc, doc, getDoc } from 'firebase/firestore'
+import { db, commentsCollection, auth } from '../includes/firebase'
+import { mapState } from 'pinia'
+import useUserStore from '@/stores/user'
 
 export default {
   name: 'Song',
@@ -158,6 +163,9 @@ export default {
       comment_alert_message: 'Please wait! Your comment is being submitted',
     }
   },
+  computed: {
+    ...mapState(useUserStore, ['userLoggedIn']),
+  },
   async created() {
     const docRef = doc(db, 'songs', this.$route.params.id)
     const docSnapshot = await getDoc(docRef)
@@ -170,12 +178,28 @@ export default {
     this.song = docSnapshot.data()
   },
   methods: {
-    async addComment(values) {
+    async addComment(values, { resetForm }) {
       this.comment_in_submission = true
       this.comment_show_alert = true
       this.comment_alert_variant = 'bg-blue-500'
       this.comment_alert_message =
         'Please wait! Your comment is being submitted'
+
+      const comment = {
+        content: values.comment,
+        datePosted: new Date().toString(),
+        sid: this.$route.params.id,
+        name: auth.currentUser.displayName,
+        uid: auth.currentUser.uid,
+      }
+
+      await addDoc(commentsCollection, comment)
+
+      this.comment_in_submission = false
+      this.comment_alert_variant = 'bg-green-500'
+      this.comment_alert_message = 'Comment added!'
+
+      resetForm()
     },
   },
 }
