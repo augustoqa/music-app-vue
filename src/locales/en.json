@@ -1,12 +1,68 @@
 {
+  "header": {
+    "menu": {
+      "about": "About",
+      "manage": "Manage",
+      "login_register": "Login / Register",
+      "logout": "Logout"
+    }
+  },
   "home": {
-    "listen": "Listen to Great Music!"
+    "listen": "Listen to Great Music!",
+    "title": "Songs"
   },
   "song": {
     "comment_count": "No comments | 1 comment | {count} comments"
   },
   "register": {
     "accept": "I accept Music's {0}",
-    "tos": "Terms of Service"
+    "tos": "Terms of Service",
+    "name": "Name",
+    "email": "Email",
+    "age": "Age",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "country": "Country",
+    "submit": "Submit",
+    "name_placeholder": "Enter Name",
+    "email_placeholder": "Enter Email",
+    "reg_alert_wait_msg": "Please wait! Your account is being created.",
+    "reg_alert_error_msg": "An unexpected error occured. Please try again later.",
+    "reg_alert_success_msg": "Success! Your account has been created."
+  },
+  "login_form": {
+    "email": "Email",
+    "password": "Password",
+    "submit": "Login",
+    "email_placeholder": "Enter Email",
+    "password_placeholder": "Enter Password",
+    "login_alert_error_msg": "Invalid login details.",
+    "login_alert_wait_msg": "Please wait! We are logging you in.",
+    "login_alert_success_msg": "Success! You are now logged in."
+  },
+  "manage": {
+    "my_songs": "My Songs"
+  },
+  "composition_item": {
+    "song_title": "Song Title",
+    "genre": "Genre",
+    "submit": "Submit",
+    "go_back": "Go Back",
+    "name_placeholder": "Enter Song Title",
+    "genre_placeholder": "Enter Genre",
+    "alert_wait_message": "Please wait! Updating song info.",
+    "alert_error_message": "Something went wrong! Try again later"
+  },
+  "auth": {
+    "your_account": "Your Account",
+    "login": "Login",
+    "register": "Register"
+  },
+  "upload": {
+    "upload": "Upload",
+    "placeholder": "Drop your files here"
+  },
+  "about": {
+    "title": "This is an about page"
   }
 }

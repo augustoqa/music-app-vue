@@ -13,29 +13,29 @@
   >
     <!-- Name -->
     <div class="mb-3">
-      <label class="inline-block mb-2">Name</label>
+      <label class="inline-block mb-2">{{ $t('register.name') }}</label>
       <vee-field
         type="text"
         name="name"
         class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-        placeholder="Enter Name"
+        :placeholder="$t('register.name_placeholder')"
       />
       <ErrorMessage class="text-red-600" name="name" />
     </div>
     <!-- Email -->
     <div class="mb-3">
-      <label class="inline-block mb-2">Email</label>
+      <label class="inline-block mb-2">{{ $t('register.email') }}</label>
       <vee-field
         type="email"
         name="email"
         class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-        placeholder="Enter Email"
+        :placeholder="$t('register.email_placeholder')"
       />
       <ErrorMessage class="text-red-600" name="email" />
     </div>
     <!-- Age -->
     <div class="mb-3">
-      <label class="inline-block mb-2">Age</label>
+      <label class="inline-block mb-2">{{ $t('register.age') }}</label>
       <vee-field
         type="number"
         name="age"
@@ -45,12 +45,12 @@
     </div>
     <!-- Password -->
     <div class="mb-3">
-      <label class="inline-block mb-2">Password</label>
+      <label class="inline-block mb-2">{{ $t('register.password') }}</label>
       <vee-field name="password" :bails="false" v-slot="{ field, errors }">
         <input
           type="password"
           class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-          placeholder="Password"
+          :placeholder="$t('register.password')"
           v-bind="field"
         />
         <div class="text-red-600" v-for="error in errors" :key="error">
@@ -60,18 +60,20 @@
     </div>
     <!-- Confirm Password -->
     <div class="mb-3">
-      <label class="inline-block mb-2">Confirm Password</label>
+      <label class="inline-block mb-2">{{
+        $t('register.confirm_password')
+      }}</label>
       <vee-field
         type="password"
         name="confirm_password"
         class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-        placeholder="Confirm Password"
+        :placeholder="$t('register.confirm_password')"
       />
       <ErrorMessage class="text-red-600" name="confirm_password" />
     </div>
     <!-- Country -->
     <div class="mb-3">
-      <label class="inline-block mb-2">Country</label>
+      <label class="inline-block mb-2">{{ $t('register.country') }}</label>
       <vee-field
         as="select"
         name="country"
@@ -102,7 +104,7 @@
       type="submit"
       class="block w-full bg-purple-600 text-white py-1.5 px-3 rounded transition hover:bg-purple-700"
     >
-      Submit
+      {{ $t('register.submit') }}
     </button>
   </vee-form>
 </template>
@@ -130,7 +132,7 @@ export default {
       reg_in_submission: false,
       reg_show_alert: false,
       reg_alert_variant: 'bg-blue-500',
-      reg_alert_msg: 'Please wait! Your account is being created.',
+      reg_alert_msg: this.$t('register.reg_alert_wait_msg'),
     }
   },
   methods: {
@@ -141,20 +143,19 @@ export default {
       this.reg_show_alert = true
       this.reg_in_submission = true
       this.reg_alert_variant = 'bg-blue-500'
-      this.reg_alert_msg = 'Please wait! Your account is being created.'
+      this.reg_alert_msg = this.$t('register.reg_alert_wait_msg')
 
       try {
         await this.createUser(values)
       } catch (error) {
         this.reg_in_submission = false
         this.reg_alert_variant = 'bg-red-500'
-        this.reg_alert_msg =
-          'An unexpected error occured. Please try again later.'
+        this.reg_alert_msg = this.$t('register.reg_alert_error_msg')
         return
       }
 
       this.reg_alert_variant = 'bg-green-500'
-      this.reg_alert_msg = 'Success! Your account has been created.'
+      this.reg_alert_msg = this.$t('register.reg_alert_success_msg')
       window.location.reload()
     },
   },

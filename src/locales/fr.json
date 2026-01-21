@@ -1,5 +1,68 @@
 {
+  "header": {
+    "menu": {
+      "about": "À propos",
+      "manage": "Gérer",
+      "login_register": "Connexion / Inscription",
+      "logout": "Déconnexion"
+    }
+  },
   "home": {
-    "listen": "Écoutez de la grande musique !"
+    "listen": "Écoutez de la grande musique !",
+    "title": "Chansons"
+  },
+  "song": {
+    "comment_count": "Pas de commentaires | 1 commentaire | {count} commentaires"
+  },
+  "register": {
+    "accept": "J'accepte les {0} de Music",
+    "tos": "Conditions d'utilisation",
+    "name": "Nom",
+    "email": "Email",
+    "age": "Âge",
+    "password": "Mot de passe",
+    "confirm_password": "Confirmer le mot de passe",
+    "country": "Pays",
+    "submit": "Soumettre",
+    "name_placeholder": "Entrez le nom",
+    "email_placeholder": "Entrez l'email",
+    "reg_alert_wait_msg": "Veuillez patienter ! Votre compte est en cours de création.",
+    "reg_alert_error_msg": "Une erreur inattendue est survenue. Veuillez réessayer plus tard.",
+    "reg_alert_success_msg": "Succès ! Votre compte a été créé."
+  },
+  "login_form": {
+    "email": "Email",
+    "password": "Mot de passe",
+    "submit": "Connexion",
+    "email_placeholder": "Entrez l'email",
+    "password_placeholder": "Entrez le mot de passe",
+    "login_alert_error_msg": "Échec de la connexion. Veuillez vérifier vos informations d'identification et réessayer.",
+    "login_alert_wait_msg": "Veuillez patienter ! Connexion en cours.",
+    "login_alert_success_msg": "Connexion réussie ! Redirection..."
+  },
+  "manage": {
+    "my_songs": "Mes Chansons"
+  },
+  "composition_item": {
+    "song_title": "Titre de la chanson",
+    "genre": "Genre",
+    "submit": "Soumettre",
+    "go_back": "Retourner",
+    "name_placeholder": "Entrez le titre de la chanson",
+    "genre_placeholder": "Entrez le genre",
+    "alert_wait_message": "Veuillez patienter ! Mise à jour des informations de la chanson.",
+    "alert_error_message": "Quelque chose a mal tourné ! Réessayez plus tard"
+  },
+  "auth": {
+    "your_account": "Votre Compte",
+    "login": "Connexion",
+    "register": "S'inscrire"
+  },
+  "upload": {
+    "upload": "Télécharger",
+    "placeholder": "Déposez vos fichiers ici"
+  },
+  "about": {
+    "title": "Ceci est une page à propos"
   }
 }
