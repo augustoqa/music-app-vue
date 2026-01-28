@@ -67,6 +67,18 @@ export default {
           return
         }
 
+        if (!navigator.onLine) {
+          this.uploads.push({
+            task: {},
+            current_progress: 100,
+            name: file.name,
+            variant: 'bg-red-400',
+            icon: 'fas fa-times',
+            text_class: 'text-red-400',
+          })
+          return
+        }
+
         const songsRef = ref(storage, `songs/${file.name}`) // music-d1209.appspot.com/songs/example.mp3
 
         const task = uploadBytesResumable(songsRef, file)

@@ -1,6 +1,10 @@
 import { initializeApp } from 'firebase/app'
-import { getAuth } from 'firebase/auth'
-import { collection, getFirestore } from 'firebase/firestore'
+import { getAuth, setPersistence, browserLocalPersistence } from 'firebase/auth'
+import {
+  collection,
+  getFirestore,
+  enableIndexedDbPersistence,
+} from 'firebase/firestore'
 import { getStorage } from 'firebase/storage'
 
 const firebaseConfig = {
@@ -17,6 +21,24 @@ const app = initializeApp(firebaseConfig)
 const auth = getAuth()
 const db = getFirestore(app)
 const storage = getStorage()
+
+// Enable Auth Persistence
+setPersistence(auth, browserLocalPersistence).catch((err) => {
+  console.error('Auth persistence error', err.code)
+})
+
+// Enable Firestore Persistence
+enableIndexedDbPersistence(db).catch((err) => {
+  if (err.code === 'failed-precondition') {
+    console.warn(
+      'Multiple tabs open, persistence can only be enabled in one tab at a time.'
+    )
+  } else if (err.code === 'unimplemented') {
+    console.warn('The current browser does not support offline persistence.')
+  } else {
+    console.error('Firestore persistence error', err.code)
+  }
+})
 
 const usersCollection = collection(db, 'users')
 const songsCollection = collection(db, 'songs')
